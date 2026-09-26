@@ -1,0 +1,251 @@
+/* =========================================================
+   CENTRAL & STORES — Product Grid (compatibility layer)
+   ---------------------------------------------------------
+   This file previously defined a parallel "premium" product
+   card system with its own class names (.premium-product-card,
+   .premium-product-image, .premium-add-cart-btn, etc.) plus
+   duplicate rules for the order-confirmation section, contact
+   section, and footer.
+
+   None of those premium class names are produced by the
+   current HTML or by products-grid.js. The authoritative
+   styles for the grid, cards, order confirmation, contact
+   section and footer all live in products.css.
+
+   This file now exists only as a compatibility shim:
+     • It aliases the old .premium-* class names to the
+       current canonical class names, so any cached page,
+       admin preview, or legacy template still renders.
+     • It no longer overrides .product-image-wrap with a
+       fixed height (that conflicted with products.css and
+       broke the square aspect ratio).
+     • It no longer duplicates order-confirmation, contact,
+       or footer rules.
+
+   If nothing in your project still uses .premium-* class
+   names, you can safely delete this file and remove the
+   <link> from products.html.
+========================================================= */
+
+/* ---------- Card aliases ---------- */
+
+.premium-product-card {
+  /* Same visual as .product-card — see products.css */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border, #ececec);
+  border-radius: 14px;
+  background: var(--white, #ffffff);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.premium-product-card:active {
+  transform: scale(0.98);
+}
+
+.premium-product-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 30%, #ffffff 0%, #f7f7f7 62%, #eeeeee 100%);
+}
+
+.premium-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.premium-product-info {
+  display: flex;
+  flex-direction: column;
+  padding: 11px 10px 12px;
+  min-height: 0;
+}
+
+.premium-product-category {
+  display: block;
+  overflow: hidden;
+  color: var(--gold-dark, #bd8500);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.75px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.premium-product-name {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 5px 0 0;
+  color: var(--black, #111111);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.premium-product-weight {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted, #747474);
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.premium-product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 0;
+}
+
+.premium-product-price {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--black, #111111);
+}
+
+.premium-add-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--black, #111111);
+  color: var(--white, #ffffff);
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.premium-add-cart-btn:hover {
+  background: var(--gold, #f2bd24);
+  color: var(--black, #111111);
+}
+
+.premium-add-cart-btn:active {
+  transform: scale(0.97);
+}
+
+.premium-add-cart-btn.added {
+  background: var(--gold, #f2bd24);
+  color: var(--black, #111111);
+}
+
+.premium-wishlist-btn {
+  position: absolute;
+  z-index: 3;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 31px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: #555555;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.premium-wishlist-btn.active {
+  border-color: #ffd3d7;
+  background: #fff1f2;
+  color: #db3e4c;
+}
+
+/* ---------- Image placeholder alias ---------- */
+
+.no-product-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(242, 189, 36, 0.08), rgba(255, 255, 255, 0)),
+    #fcfbf7;
+}
+
+.no-product-image span {
+  color: var(--gold-dark, #bd8500);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+/* ---------- Legacy section aliases ---------- */
+/* These match class names that existed on older versions of
+   the page but are no longer produced by the current HTML.
+   They are kept here so a legacy template still renders. */
+
+.call-store-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 128px;
+  min-height: 45px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--black, #111111);
+  color: var(--white, #ffffff);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.whatsapp-store-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 128px;
+  min-height: 45px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--gold, #f2bd24);
+  color: var(--black, #111111);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   REMOVED (were in this file, now handled by products.css):
+     • .product-grid-section / .product-grid-heading
+     • .product-count
+     • .products-grid
+     • .order-confirmation-section / -card / .confirmation-*
+     • .contact-store-section / .contact-store-actions
+     • .site-footer / .footer-brand / .footer-actions
+     • fixed-height .product-image-wrap override
+     • duplicate tap-highlight reset
+     • global outline:none on focus
+
+   The only rules that remain above are compatibility aliases
+   for legacy class names. Nothing here overrides products.css.
+========================================================= */

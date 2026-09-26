@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#d8a100">
+  <meta name="description" content="Review your Central & Stores order enquiry cart. Send your grocery list on WhatsApp — our store owner will call to confirm price and availability.">
+  <meta name="robots" content="noindex, follow">
+
+  <title>My Cart | Central & Stores</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="cart.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+
+  <!-- =====================================================
+       SVG ICONS
+  ====================================================== -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+      <path d="M19 12H5"></path>
+      <path d="M12 19l-7-7 7-7"></path>
+    </symbol>
+
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14"></path>
+      <path d="m13 6 6 6-6 6"></path>
+    </symbol>
+
+    <symbol id="icon-grid" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="6" height="6" rx="1"></rect>
+      <rect x="14" y="4" width="6" height="6" rx="1"></rect>
+      <rect x="4" y="14" width="6" height="6" rx="1"></rect>
+      <rect x="14" y="14" width="6" height="6" rx="1"></rect>
+    </symbol>
+
+    <symbol id="icon-cart" viewBox="0 0 24 24">
+      <path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L21 7H7"></path>
+      <circle cx="10" cy="20" r="1"></circle>
+      <circle cx="18" cy="20" r="1"></circle>
+    </symbol>
+
+    <symbol id="icon-minus" viewBox="0 0 24 24">
+      <path d="M5 12h14"></path>
+    </symbol>
+
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14"></path>
+      <path d="M5 12h14"></path>
+    </symbol>
+
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <path d="M3 6h18"></path>
+      <path d="M8 6V4h8v2"></path>
+      <path d="M19 6l-1 14H6L5 6"></path>
+      <path d="M10 11v5"></path>
+      <path d="M14 11v5"></path>
+    </symbol>
+
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .8 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.7 2.9.8a2 2 0 0 1 1.6 1.9z"></path>
+    </symbol>
+
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="M3 10.5 12 3l9 7.5"></path>
+      <path d="M5 9.5V21h14V9.5"></path>
+      <path d="M9 21v-6h6v6"></path>
+    </symbol>
+
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="6.5"></circle>
+      <path d="m16 16 4.5 4.5"></path>
+    </symbol>
+
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.2 1.7 6L0 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.2C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5 .9 6.9 2.8a9.7 9.7 0 0 1 2.8 6.9c0 5.4-4.4 9.9-9.7 9.9zm5.3-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1a7.9 7.9 0 0 1-2.3-1.4 8.7 8.7 0 0 1-1.6-2c-.2-.3 0-.4.1-.6l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"></path>
+    </symbol>
+
+  </svg>
+
+  <div class="cart-app-shell">
+
+    <!-- =====================================================
+         CART HEADER
+    ====================================================== -->
+    <header class="cart-header">
+      <a href="products.html" class="cart-back-btn" aria-label="Back to products">
+        <svg aria-hidden="true"><use href="#icon-arrow-left"></use></svg>
+      </a>
+
+      <a href="products.html" class="cart-brand">
+        <div class="cart-brand-logo">
+          <svg aria-hidden="true"><use href="#icon-cart"></use></svg>
+        </div>
+
+        <div class="cart-brand-text">
+          <h1>Central &amp; Stores</h1>
+          <p>Order Enquiry Cart</p>
+        </div>
+      </a>
+
+      <a href="products.html#categoryFilter" class="cart-grid-btn" aria-label="Browse products">
+        <svg aria-hidden="true"><use href="#icon-grid"></use></svg>
+      </a>
+    </header>
+
+    <!-- =====================================================
+         MAIN CART CONTENT
+    ====================================================== -->
+    <main class="cart-main">
+
+      <!-- Cart Intro -->
+      <section class="cart-intro">
+        <span class="cart-eyebrow">YOUR ORDER ENQUIRY</span>
+        <h2>My Cart</h2>
+        <p>
+          Final product availability and price will be confirmed by
+          our store owner through a call.
+        </p>
+      </section>
+
+      <!-- Empty Cart State -->
+      <section class="empty-cart" id="emptyCart" hidden>
+        <div class="empty-cart-icon">
+          <svg aria-hidden="true"><use href="#icon-cart"></use></svg>
+        </div>
+
+        <h3>Your cart is empty</h3>
+        <p>Add products from our grocery collection to send an order enquiry.</p>
+
+        <a href="products.html#categoryFilter" class="empty-cart-btn">
+          Browse Products
+          <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      </section>
+
+      <!-- Selected Products -->
+      <section class="cart-products-card" id="cartProductsCard">
+
+        <div class="cart-products-heading">
+          <h3>Selected Products</h3>
+
+          <span class="cart-item-total" aria-live="polite">
+            <b id="cartItemCount">0</b>
+            <span>Items</span>
+          </span>
+        </div>
+
+        <!-- Products load here from cart.js -->
+        <div class="cart-items-list" id="cartItemsList" aria-live="polite"></div>
+
+      </section>
+
+      <!-- =====================================================
+           CUSTOMER DETAILS FORM
+      ====================================================== -->
+      <section class="customer-details-card" id="customerDetailsCard">
+
+        <span class="cart-eyebrow">CUSTOMER DETAILS</span>
+        <h3>Send Order Enquiry</h3>
+
+        <p class="customer-details-info">
+          Your order list will open in WhatsApp. Store owner will call
+          to confirm price and availability.
+        </p>
+
+        <form id="orderForm" class="order-form" novalidate>
+
+          <div class="form-group">
+            <label for="customerName">Your Name <span aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="customerName"
+              name="customerName"
+              placeholder="Enter your name"
+              autocomplete="name"
+              maxlength="60"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">Mobile Number <span aria-hidden="true">*</span></label>
+            <input
+              type="tel"
+              id="customerPhone"
+              name="customerPhone"
+              placeholder="Enter 10 digit mobile number"
+              inputmode="numeric"
+              pattern="[0-9]{10}"
+              autocomplete="tel-national"
+              maxlength="10"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="customerAddress">Delivery Address <span aria-hidden="true">*</span></label>
+            <textarea
+              id="customerAddress"
+              name="customerAddress"
+              rows="4"
+              placeholder="House no, street, area, landmark..."
+              autocomplete="street-address"
+              maxlength="300"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="customerNote">Additional Note <small>(Optional)</small></label>
+            <textarea
+              id="customerNote"
+              name="customerNote"
+              rows="3"
+              maxlength="200"
+              placeholder="Example: Call before delivery..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="send-order-btn" id="sendOrderBtn">
+            <svg aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+            Send Order Enquiry on WhatsApp
+          </button>
+
+        </form>
+
+      </section>
+
+      <!-- Call Note -->
+      <section class="cart-call-note">
+        <div class="cart-call-note-icon">
+          <svg aria-hidden="true"><use href="#icon-phone"></use></svg>
+        </div>
+
+        <div>
+          <span>ORDER CONFIRMATION</span>
+          <h4>Shop owner will call you</h4>
+          <p>
+            Final availability, price and delivery details will be confirmed through a call.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =====================================================
+         CART FOOTER
+    ====================================================== -->
+    <footer class="cart-footer">
+
+      <div class="cart-footer-brand">
+        <div class="cart-footer-logo">
+          <svg aria-hidden="true"><use href="#icon-cart"></use></svg>
+        </div>
+
+        <div>
+          <h3>Central &amp; Stores</h3>
+          <p>Premium Grocery Store</p>
+        </div>
+      </div>
+
+      <p class="cart-footer-description">
+        Fresh groceries. Trusted local service. Easy order enquiry.
+      </p>
+
+      <div class="cart-footer-links">
+        <a href="tel:+919344621645" data-tel-link>
+          <svg aria-hidden="true"><use href="#icon-phone"></use></svg>
+          Call Store
+        </a>
+
+        <a
+          href="https://wa.me/919344621645?text=Hello%20Central%20%26%20Stores"
+          target="_blank"
+          rel="noopener"
+          data-wa-link
+        >
+          <svg aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+          WhatsApp Us
+        </a>
+      </div>
+
+      <p class="cart-footer-copy">
+        © 2025 Central &amp; Stores. All Rights Reserved.
+      </p>
+
+    </footer>
+
+    <!-- =====================================================
+         MOBILE BOTTOM NAVIGATION
+    ====================================================== -->
+    <nav class="cart-bottom-nav" aria-label="Quick navigation">
+
+      <a href="index.html" class="cart-bottom-nav-item">
+        <svg aria-hidden="true"><use href="#icon-home"></use></svg>
+        <span>Home</span>
+      </a>
+
+      <a href="products.html#categoryFilter" class="cart-bottom-nav-item">
+        <svg aria-hidden="true"><use href="#icon-grid"></use></svg>
+        <span>Categories</span>
+      </a>
+
+      <a href="products.html#productSearch" class="cart-bottom-nav-item">
+        <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+        <span>Search</span>
+      </a>
+
+      <a href="cart.html" class="cart-bottom-nav-item active cart-bottom-cart" aria-current="page">
+        <span class="cart-bottom-cart-icon">
+          <svg aria-hidden="true"><use href="#icon-cart"></use></svg>
+          <span id="bottomCartCount" class="cart-badge" data-cart-count>0</span>
+        </span>
+        <span>Cart</span>
+      </a>
+
+      <a
+        href="https://wa.me/919344621645?text=Hello%20Central%20%26%20Stores"
+        target="_blank"
+        rel="noopener"
+        class="cart-bottom-nav-item"
+        data-wa-link
+      >
+        <svg aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+        <span>Contact</span>
+      </a>
+
+    </nav>
+
+  </div><!-- END CART APP SHELL -->
+
+  <script src="config.js" defer></script>
+  <script src="cart-common.js" defer></script>
+  <script src="cart.js" defer></script>
+
+</body>
+</html>
